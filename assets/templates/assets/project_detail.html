@@ -1,0 +1,27 @@
+<div class="panel panel-default">
+	<div class="panel-heading">{{ object.name }}</div>
+	<div class="panel-body">
+		<p>
+			<button type="button" class="btn btn-primary">添加集群</button>
+			<button type="button" class="btn btn-default">删除集群</button>
+		</p>
+	</div>
+	<table class="table table-striped">
+		<thead>
+			<tr>
+				<th>项目名称</th>
+				<th>所属</th>
+				<th>生命周期</th>
+				<th>项目负责人</th>
+			</tr>
+		</thead>
+		<tbody>			
+			<tr>
+				<td>{{ object.name }}</td>
+				<td>{{ object.company }}</td>
+				<td>{{ object.lifecycle }}</td>
+				<td>{{ object.owner }}</td>
+			</tr>
+		</tbody>
+	</table>
+</div>

@@ -1,0 +1,33 @@
+{% extends "base.html" %} {% block content %}
+<div class="panel panel-default">
+	<div class="panel-heading">Hosts</div>
+	<div class="panel-body">
+		<p>
+			<button type="button" class="btn btn-primary">添加主机</button>
+			<button type="button" class="btn btn-default">删除主机</button>
+		</p>
+	</div>
+	<table class="table table-striped">
+		<thead>
+			<tr>
+				<th>Hostname</th>
+				<th>内网ip</th>
+				<th>所属项目</th>
+				<th>运行状态</th>
+				<th>成本</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for host in object_list %}
+			<tr>
+				<td>{{ host.name }}</td>
+				<td>{{ host.inner_ip }}</td>
+				<td>{{ host.project }}</td>
+				<td>{{ host.status }}</td>
+				<td>{{ host.cost }}</td>
+			</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+</div>
+{% endblock %}

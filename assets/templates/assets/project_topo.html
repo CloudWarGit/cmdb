@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+{% block title %}业务拓扑{% endblock %}
+
+{% block head %}
+    <link type="text/css" href="/static/bootstrap-treeview/dist/bootstrap-treeview.min.css">
+{% endblock %}
+
+{% block content %}
+    <hr>
+    <div class="row">
+        <div id="tree" class="col-md-3"></div>
+        <div id="result" class="col-md-9">
+            项目拓扑结构
+        </div>
+    </div>
+ {% endblock %}
+ 
+ {% block script %}
+    <script type="text/javascript" src="/static/bootstrap-treeview/dist/bootstrap-treeview.js"></script>
+    <script type="text/javascript">
+       $(function () {
+           $.ajaxSetup({
+               data: {csrfmiddlewaretoken: '{{ csrf_token }}' },
+           });
+           var tree = $.getJSON("{% url 'projects-list-json' %}", '', function (data) {
+               $('#tree').treeview({
+                   data: data,
+                   level: 2,
+                   showTags: true,
+                   onNodeSelected: function (event, node) {
+                	   switch(node.nodetype)
+                	   {
+                	   case "Project":
+                		   $.get("assets/project/" + node.text, {}, function(data){
+                			   console.log(data);
+                			   $("#result").html(data)
+                		   });
+                		   break;
+                	   case "Cluster":
+                		   $.get("assets/Cluster/" + node.text, {}, function(data){
+                			   console.log(data);
+                			   $("#result").html(data)
+                		   });
+                		   break;
+                		default:
+                			$.get("hostsby/"+ '饭团', {}, function(data){
+                                console.log(data);
+                                $("#result").html(data);
+                            })
+                	   }
+                   }
+               });
+           }); 
+       });
+   </script>
+{% endblock %}
