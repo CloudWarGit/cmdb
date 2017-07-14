@@ -71,3 +71,6 @@ class ClusterDetailView(DetailView):
 
 class ServicesView(ListView):
     model = Service
+    
+class ServiceDetailView(DetailView):
+    model = Service

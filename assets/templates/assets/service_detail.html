@@ -1,0 +1,66 @@
+<div class="panel panel-default">
+	<div class="panel-heading">{{ object.name }}</div>
+	<div class="panel-body">
+		<p>
+			<button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#serviceOnHosts" aria-expanded="false" aria-controls="collapseExample">
+				查看主机
+			</button>
+
+		</p>
+	</div>
+	<table class="table table-striped">
+		<thead>
+			<tr>
+				<th>服务名称</th>
+				<th>服务ip</th>
+				<th>端口号</th>
+				<th>所属集群</th>
+				<th>运行主机数</th>
+				<th>版本号</th>
+			</tr>
+		</thead>
+		<tbody>			
+			<tr>
+				<td>{{ object.name }}</td>
+				<td>{{ object.ip }}</td>
+				<td>{{ object.port }}</td>
+				<td>{{ object.cluster }}</td>
+				<td>{{ object.host.count }}</td>
+				<td>{{ object.version }}</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+
+<div class="panel panel-default collapse" id="serviceOnHosts">
+	<div class="panel-heading">运行{{ object.name }}的主机</div>
+	<table class="table table-striped">
+		<thead>
+			<tr>
+				<th>Hostname</th>
+				<th>内网ip</th>
+				<th>所属项目</th>
+				<th>运行状态</th>
+				<th>成本</th>			
+			</tr>
+		</thead>
+		<tbody>
+			{% for host in object.host.all %}
+			<tr>
+				<td>{{ host.name }}</td>
+				<td>{{ host.inner_ip }}</td>
+				<td>{{ host.project }}</td>
+				<td>{{ host.status }}</td>
+				<td>{{ host.cost }}</td>
+			</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+</div>
+
+<!--  {% block script %}
+ 	<script type="text/javascript" src="/static/bootstrap-treeview/dist/bootstrap-treeview.js"></script>
+    <script type="text/javascript">
+    	
+    </script>
+ {% endblock %} -->

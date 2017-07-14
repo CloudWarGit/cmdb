@@ -10,5 +10,7 @@ urlpatterns = [
     url(r'project/(?P<pk>.*)/', ProjectDetailView.as_view(), name='project-detail'),
     url(r'projects/json/$', ProjectsJson.as_view(), name='projects-list-json'),
     url(r'projects/topo/$', ProjectTopologyView.as_view(template_name='assets/project_topo.html'), name='project-topo'),
+    url(r'cluster/(?P<pk>.*)/', ClusterDetailView.as_view(), name='cluster-detail'),
+    url(r'service/(?P<pk>.*)', ServiceDetailView.as_view(), name='service-detail'),
     url(r'hostsby/(?P<project>.*)/', HostsByProjectView.as_view(template_name='assets/hosts_list.html'), name='HostsbyProject')
     ] 

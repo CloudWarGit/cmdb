@@ -1,0 +1,26 @@
+<div class="panel panel-default">
+	<div class="panel-heading">{{ object.name }}</div>
+	<div class="panel-body">
+		<p>
+			<button type="button" class="btn btn-primary">正式环境</button>
+			<button type="button" class="btn btn-primary">预发布环境</button>
+			<button type="button" class="btn btn-default">测试环境</button>
+		</p>
+	</div>
+	<table class="table table-striped">
+		<thead>
+			<tr>
+				<th>集群名称</th>
+				<th>环境</th>
+				<th>所属项目</th>
+			</tr>
+		</thead>
+		<tbody>			
+			<tr>
+				<td>{{ object.name }}</td>
+				<td>{{ object.environment }}</td>
+				<td>{{ object.project }}</td>
+			</tr>
+		</tbody>
+	</table>
+</div>

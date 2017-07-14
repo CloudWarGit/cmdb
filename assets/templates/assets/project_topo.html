@@ -32,19 +32,19 @@
                 	   switch(node.nodetype)
                 	   {
                 	   case "Project":
-                		   $.get("assets/project/" + node.text, {}, function(data){
+                		   $.get("assets/project/" + node.pk, {}, function(data){
                 			   console.log(data);
                 			   $("#result").html(data)
                 		   });
                 		   break;
                 	   case "Cluster":
-                		   $.get("assets/Cluster/" + node.text, {}, function(data){
+                		   $.get("assets/cluster/" + node.pk, {}, function(data){
                 			   console.log(data);
                 			   $("#result").html(data)
                 		   });
                 		   break;
                 		default:
-                			$.get("hostsby/"+ '饭团', {}, function(data){
+                			$.get("service/"+ node.pk, {}, function(data){
                                 console.log(data);
                                 $("#result").html(data);
                             })

@@ -80,8 +80,9 @@ def get_project_tree(parent):
     display_tree=[]
     for p in parent:
         node=TreeNode()
-        node.text = p.name
+        node.text = p.__str__()
         node.nodetype = p.__class__.__name__
+        node.pk = p.pk
         try:
             children=p.children.all()
             if children:

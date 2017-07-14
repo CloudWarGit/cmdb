@@ -51,7 +51,6 @@ class Host(Asset):
         (2, "已销毁")
         )
     
-#     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     name = models.CharField("主机名", max_length=100, blank=True)
     type = models.ForeignKey(HostType,on_delete=models.CASCADE)
     inner_ip = models.GenericIPAddressField("内网ip")
@@ -114,7 +113,6 @@ class Service(Asset):
       
     def __str__(self):
         return self.name
-#         return self.project.name + "." +self.name
     
 class ExternalService(Asset):
     name = models.CharField("服务名称", max_length=100)
