@@ -31,8 +31,11 @@ class HostDetailView(DetailView):
 class HostAddView(CreateView):
     model = Host
     fields = ['name', 'type', 'inner_ip', 'out_ip', 'os', 
-              'project', 'status', 'create_time', 
+              'project', 'group', 'status', 'create_time', 
               'total_up_time','cost','custom_tag','summary']
+    
+#     def post(self, request, *args, **kwargs):
+#         return super(HostAddView, self).post(request, request, *args, **kwargs)
 
 class ProjectsJson(ListView):
     model = Project
@@ -63,7 +66,7 @@ class HostsByProjectView(ListView):
 class ProjectTopologyView(ListView): 
     model = Project
     
-class ClusterView(ListView):
+class ClustersView(ListView):
     model = Cluster
     
 class ClusterDetailView(DetailView):
@@ -74,3 +77,9 @@ class ServicesView(ListView):
     
 class ServiceDetailView(DetailView):
     model = Service
+    
+class ContainersView(ListView):
+    model = Container
+    
+class ContainerDetailView(DetailView):
+    model = Container

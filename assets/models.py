@@ -57,7 +57,8 @@ class Host(Asset):
     out_ip = models.GenericIPAddressField("外网ip", blank=True, null=True)
     os = models.CharField("操作系统", max_length=32, blank=True)
     project = models.ForeignKey('Project', verbose_name='所属业务', blank=True, null=True)
-#     service = models.ManyToManyField('Service', verbose_name='运行服务', blank=True)
+#     service = models.ManyToManyField('Service', verbose_name='运行服务', blank=True)   
+    group = models.ManyToManyField("Group", verbose_name='所属组', blank=True)
     status = models.IntegerField("运行状态", choices=HOST_STATUS)
     create_time = models.DateTimeField(verbose_name="创建时间")
     total_up_time = models.TimeField("累计运行时")
@@ -76,6 +77,18 @@ class Container(Asset):
     image = models.CharField("镜像名称", max_length=100)
     status = models.CharField("状态", max_length=100)
     create_time = models.DateTimeField(verbose_name="创建时间")
+    
+    def __str__(self):
+        return self.name
+
+class Group(models.Model):
+    name = models.CharField("主机组", max_length=100)
+    children_groups = models.ManyToManyField("self", verbose_name='子组', symmetrical=False, blank=True)
+    
+    vars = models.CharField("组变量", max_length=100, blank=True, null=True)
+    
+    def __str__(self):
+        return self.name
 
 class Project(models.Model):
     LIFE_CYCLE = (
@@ -121,6 +134,8 @@ class ExternalService(Asset):
     price = models.FloatField("价格")
     cost = models.FloatField("已消费")
     
+    def __str__(self):
+        return self.name
 
 class Configuration(Asset):
     pass

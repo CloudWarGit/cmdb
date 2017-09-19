@@ -1,9 +1,11 @@
-{% extends "base.html" %} {% block content %}
+{% extends "base.html" %}
+
+{% block content %}
 <div class="panel panel-default">
 	<div class="panel-heading">Hosts</div>
 	<div class="panel-body">
 		<p>
-			<button type="button" class="btn btn-primary">添加主机</button>
+			<button id="addHost" type="button" class="btn btn-primary">添加主机</button>
 			<button type="button" class="btn btn-default">删除主机</button>
 		</p>
 	</div>
@@ -30,4 +32,14 @@
 		</tbody>
 	</table>
 </div>
+{% endblock %}
+
+{% block script %}
+<script type="text/javascript">
+	$("#addHost").on('click', function(){
+			$.get("/assets/host/add",{}, function(data){
+			$("#main-content").html(data)
+		})
+	})
+</script>
 {% endblock %}

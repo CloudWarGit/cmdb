@@ -1,7 +1,20 @@
 {% extends "base.html" %}
 {% block content %}
-<form action="" method="post">{% csrf_token %}
+<form class="form-horizontal" action="{% url 'host-add' %}" method="post">{% csrf_token %}
+<div class="form-group">
     {{ form.as_p }}
-    <input type="submit" value="Save" />
+</div>  
+    <button type="submit" class="btn btn-default" >submit</button>
+    <button type="reset" class="btn btn-default" >reset</button>
+ 
 </form>
+{% endblock %}
+
+{% block script %}
+<script type="text/javascript">
+	$("form").find("input").addClass("form-control")
+	$("form").find("textarea").addClass("form-control")	
+	$("form").find("select").addClass("form-control")
+</script>
+	
 {% endblock %}
